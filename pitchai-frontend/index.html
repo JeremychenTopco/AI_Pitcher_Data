@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XPORTS Pitch AI</title>
+    <!--
+      PDF export (see src/lib/reportPdf.ts) loads jsPDF from a CDN rather than
+      npm — this dev environment's npm registry access is blocked by a TLS
+      proxy (SELF_SIGNED_CERT_IN_CHAIN on `npm install`), which doesn't affect
+      the browser's own HTTPS fetch of this script tag. Swap for a normal
+      `npm install jspdf` + `import { jsPDF } from "jspdf"` once that's not an
+      issue — nothing else about reportPdf.ts needs to change, it only reads
+      `window.jspdf.jsPDF`.
+    -->
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

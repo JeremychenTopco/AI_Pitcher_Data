@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------
+   Design tokens — reverse-engineered from the Figma screens.
+   Replace the hex values with the exact ones from Figma variables
+   (or generate this block from `get_variable_defs` via the Figma MCP).
+   --------------------------------------------------------------- */
+@theme {
+  /* Brand ---------------------------------------------------- */
+  --color-brand: #f2cc00;        /* top bar, active nav, selected tab, compare panels */
+  --color-brand-ink: #0a0a0a;    /* text on brand */
+  --color-nav: #000000;          /* side nav */
+
+  /* Surfaces ------------------------------------------------- */
+  --color-canvas: #ededed;       /* page background */
+  --color-surface: #ffffff;      /* cards, charts */
+  --color-surface-muted: #e9e9e9;/* metric cards in compare view, HUD chips */
+  --color-stage: #000000;        /* video / skeleton viewer stage */
+  --color-line: #d4d4d4;
+
+  /* Status --------------------------------------------------- */
+  --color-status-done: #22c55e;
+  --color-status-processing: #f3596a;
+
+  /* Metric scale (low → high) -------------------------------- */
+  --color-metric-low: #ea3323;
+  --color-metric-mid: #f5a623;
+  --color-metric-high: #17a24a;
+  --color-metric-value: #157f3c;  /* the big "24%" on the report page */
+
+  /* Metric progress bar, three segments ---------------------- */
+  --color-bar-1: #c9efd5;
+  --color-bar-2: #4ecb77;
+  --color-bar-3: #2e9e52;
+  --color-bar-track: #ffffff;
+
+  /* Comparison: record 1 vs record 2 ------------------------- */
+  --color-compare-a: #4a7fd1;
+  --color-compare-b: #f5811f;
+  /* Tinted strips behind each side's stats in the dual view. */
+  --color-compare-a-soft: #d6e4f7;
+  --color-compare-a-softer: #eaf1fb;
+  --color-compare-b-soft: #f5b578;
+  --color-compare-b-softer: #fbdcc0;
+  /* Three-band scale on the compare metric cards. */
+  --color-cmpbar-1: #ffffff;
+  --color-cmpbar-2: #b3b3b3;
+  --color-cmpbar-3: #737373;
+
+  /* Chart series -------------------------------------------------
+     Named by the flowchart's colour assignment, not by position, so a
+     series keeps its colour wherever it appears. The Figma screens use an
+     older magenta/blue/red/green set — reconcile before shipping. */
+  --color-series-red: #e5262b;
+  --color-series-blue: #1f5fd0;
+  --color-series-green: #14a35a;
+  --color-series-orange: #f08019;
+
+  /* Legacy placeholder colours from the Figma file, kept until the two
+     specs are reconciled. */
+  --color-series-1: #ff00cc;
+  --color-series-2: #1414ff;
+  --color-series-3: #ff0000;
+  --color-series-4: #00c46a;
+
+  /* Timeline event markers ----------------------------------- */
+  --color-event-fps: #a24bd6;
+  --color-event-fp: #4a7fd1;
+  --color-event-mer: #000000;
+  --color-event-br: #000000;
+  /* Played portion of the scrubber track — brand yellow, so "how far in
+     we are" reads at a glance against the white unplayed remainder. */
+  --color-progress-fill: var(--color-brand);
+
+  /* Type ----------------------------------------------------- */
+  --font-sans: "Noto Sans TC", "Inter", system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    background: var(--color-canvas);
+    color: #0a0a0a;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  /* Keyboard focus stays visible everywhere. */
+  :focus-visible {
+    outline: 2px solid var(--color-compare-a);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
